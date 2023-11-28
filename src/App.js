@@ -2,9 +2,16 @@ import "./App.css"
 import {ColorfulButton} from "./SpecialButtons/ColorfulButton";
 import {SizedButton} from "./SpecialButtons/SizedButton";
 import {Button} from "./Button";
+import {useState} from "react";
+import {Counter} from "./Counter";
 
 
 function App() {
+    const [numberOfClicks, setNumberOfClicks] = useState(0)
+
+    //const [favoriteFruit, setFavoriteFruit] = useState('banana')
+
+    //let numberOfClicks = 0
     const colors = ['blue', 'red', 'green', 'yellow']
     const sizes = ['small', 'medium', 'large']
     const contents = [
@@ -19,29 +26,26 @@ function App() {
     return (
         <div className="container">
             <div>
-                <Button
-                    onClick={() => console.log('...from the other side')}
-                    content="Hello"
-                />
+                <Counter/>
             </div>
             <div>
                 {
-                    colors.map((color) => (
-                        <ColorfulButton color={color}/>
-                    ))
+                    colors.map((_color) => <ColorfulButton color={_color}/>)
                 }
             </div>
             <div>
                 {
-                    sizes.map((size) => (
-                        <SizedButton size={size}/>
+                    sizes.map((size, index) => (
+                        <SizedButton size={size} index={index}/>
                     ))
                 }
             </div>
             <div>
                 {
                     contents.map((content) => (
-                        <Button content={content}/>
+                        <Button>
+                            {content}
+                        </Button>
                     ))
                 }
             </div>
